@@ -35,7 +35,7 @@ class Item{
 
 
 
- class application{
+ class ToDoListApplication{
 - ToDoList[]
 
 + addToDoList()
@@ -45,11 +45,11 @@ class Item{
 + loadToDoList()
  }
 
- class main extends application {
+ class main extends ToDoListApplication {
  +launch()
  }
 
- ToDoList --> application
+ ToDoList --> ToDoListApplication
  Item --> ToDoList
 
 
