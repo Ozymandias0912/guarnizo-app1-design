@@ -74,16 +74,28 @@ public class ToDoListAppController implements Initializable {
 
         table.setItems(list);
     }
-
+//remove button
     @FXML
     void remove (ActionEvent event){
         int selectedItem = table.getSelectionModel().getSelectedIndex();
         table.getItems().remove(selectedItem);
     }
-
+//remove all tasks button
     @FXML
     void removeAll (ActionEvent event){
         table.getItems().clear();
     }
+
+    //edit task button
+    /*
+    @FXML
+    void edit (ActionEvent event){
+        int selectedItem = table.getSelectionModel().getSelectedIndex();
+
+
+
+    }
+    */
+
 
 }
