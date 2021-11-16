@@ -1,0 +1,25 @@
+
+D
+java:S1172g")Remove this unused method parameter "ae".(åöÈşÿÿÿÿ
+E
+java:S1172‡")Remove this unused method parameter "ae".(šüàÊüÿÿÿÿ
+E
+java:S1172")Remove this unused method parameter "ae".(ä¢ÿ¿øÿÿÿÿ
+E
+java:S1172“")Remove this unused method parameter "ae".(½óÑ¬şÿÿÿÿ
+O
+java:S1854Á"8Remove this useless assignment to local variable "task".(Õ¹óá
+@
+java:S1172¿")Remove this unused method parameter "ae".(ãô¼Ã
+@
+java:S1481Á")Remove this unused "task" local variable.(Õ¹óá
+U
+java:S1117÷"9Rename "title" which hides the field declared at line 30.(Íâ½Ôûÿÿÿÿ
+[
+java:S1117ø"?Rename "description" which hides the field declared at line 33.(ÿææßøÿÿÿÿ
+8
+java:S1643Ú"Use a StringBuilder instead.(û˜‡°ıÿÿÿÿ
+_
+java:S2095æ"HUse try-with-resources or close this "FileWriter" in a "finally" clause.(´ˆâë
+a
+java:S2095õ"EUse try-with-resources or close this "Scanner" in a "finally" clause.(˜š‹úÿÿÿÿ
