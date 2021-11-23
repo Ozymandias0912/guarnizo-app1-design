@@ -18,9 +18,8 @@
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-                  <MenuItem mnemonicParsing="false" onAction="#saveFile" text="Save As" />
-                  <MenuItem mnemonicParsing="false" onAction="#loadFile" text="Load" />
+                  <MenuItem mnemonicParsing="false" onAction="#save" text="Save As" />
+                  <MenuItem mnemonicParsing="false" onAction="#load" text="Load" />
             </items>
           </Menu>
 
@@ -37,30 +36,33 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" onDragDetected="#removeAllTasks" prefHeight="81.0" prefWidth="760.0">
                <children>
-                  <TextField fx:id="titleInput" alignment="CENTER" layoutX="282.0" layoutY="14.0" promptText="title task" />
-                  <TextField fx:id="descriptionInput" layoutX="470.0" layoutY="14.0" promptText="Description" />
-                  <Button layoutX="14.0" layoutY="58.0" mnemonicParsing="false" onAction="#addTask" text="Add Task" />
-                  <DatePicker fx:id="datePicker" layoutX="662.0" layoutY="14.0" promptText="choose a due date" />
-                  <Button layoutX="126.0" layoutY="58.0" mnemonicParsing="false" onAction="#removeTask" text="Delete Task" />
-                  <Button layoutX="115.0" layoutY="94.0" mnemonicParsing="false" onAction="#removeAllTasks" text="Delete All Tasks" />
-                  <Button layoutX="21.0" layoutY="94.0" mnemonicParsing="false" onAction="#editTask" text="Edit Task" />
-                  <Button layoutX="260.0" layoutY="58.0" mnemonicParsing="false" onAction="#addList" text="Add List" />
-                  <TextField fx:id="titleListInput" layoutX="39.0" layoutY="14.0" promptText="title list" />
+                  <TextField alignment="CENTER" layoutX="282.0" layoutY="14.0" promptText="title task" />
+                  <TextField layoutX="470.0" layoutY="14.0" promptText="Description" />
+                  <Button layoutX="461.0" layoutY="71.0" mnemonicParsing="false" onAction="#addItem" text="Add Task" />
+                  <DatePicker layoutX="662.0" layoutY="14.0" promptText="choose a due date" />
+                  <Button layoutX="582.0" layoutY="71.0" mnemonicParsing="false" onAction="#deleteItem" text="Delete Task" />
+                  <Button layoutX="571.0" layoutY="115.0" mnemonicParsing="false" onAction="#removeAllItems" text="Delete All Tasks" />
+                  <Button layoutX="461.0" layoutY="115.0" mnemonicParsing="false" onAction="#editItem" text="Edit Task" />
+                  <Button layoutX="39.0" layoutY="72.0" mnemonicParsing="false" onAction="#addList" text="Add List" />
+                  <TextField layoutX="39.0" layoutY="14.0" promptText="title list" />
+                  <Button layoutX="129.0" layoutY="71.0" mnemonicParsing="false" onAction="#deleteList" text="Delete List" />
+                  <Button layoutX="43.0" layoutY="115.0" mnemonicParsing="false" onAction="#editList" text="Edit List" />
+                  <Button layoutX="140.0" layoutY="115.0" mnemonicParsing="false" onAction="#removeAllLists" text="Delete All Lists" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="493.0" prefWidth="760.0">
                <children>
                   <TableView fx:id="table" editable="true" layoutX="301.0" layoutY="14.0" maxHeight="403.0" maxWidth="592.0" minHeight="403.0" minWidth="579.0" pickOnBounds="false" prefHeight="403.0" prefWidth="579.0" AnchorPane.bottomAnchor="102.0" AnchorPane.leftAnchor="301.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="14.0">
                     <columns>
-                        <TableColumn fx:id="title" prefWidth="110.59201049804688" text="Title" />
-                      <TableColumn fx:id="dueDateString" minWidth="0.0" prefWidth="99.8399658203125" text="DueDate" />
-                        <TableColumn fx:id="description" minWidth="0.0" prefWidth="223.48800659179688" text="Description" />
-                        <TableColumn fx:id="complete" maxWidth="82.36803627734457" minWidth="82.36803627734457" prefWidth="82.36803627734457" text="Completed" />
+                        <TableColumn prefWidth="110.59201049804688" text="Title" />
+                      <TableColumn minWidth="0.0" prefWidth="99.8399658203125" text="DueDate" />
+                        <TableColumn minWidth="0.0" prefWidth="223.48800659179688" text="Description" />
+                        <TableColumn maxWidth="82.36803627734457" minWidth="82.36803627734457" prefWidth="82.36803627734457" text="Completed" />
                     </columns>
                   </TableView>
                   <TableView fx:id="listTable" layoutX="45.0" layoutY="14.0" prefHeight="405.0" prefWidth="111.0">
                     <columns>
-                      <TableColumn fx:id="titleList" prefWidth="105.9839973449707" text="Lists" />
+                      <TableColumn prefWidth="105.9839973449707" text="Lists" />
                     </columns>
                   </TableView>
                </children>

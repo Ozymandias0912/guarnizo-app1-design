@@ -1,46 +1,34 @@
+/*
+ *  UCF COP3330 Fall 2021 Application Assignment 1 Solution
+ *  Copyright 2021 Juan Guarnizo
+ */
+
 package baseline;
-
+//create Item class:
+//private description
+//private complete
+//private dueDate (YYYY-MM-DD)
 public class Item {
-    //create Item class
 
-
-    //private Title
-    private String title;
-    //private description
     private String description;
-    //private complete
     private Boolean complete;
-    //private dueDate (YYYY-MM-DD)
-    private String dueDateString;
+    private String dueDate;
 
-    public Item() {
-        this.title = validateTitle("UCF");
-        this.description = "add description";
+    public Item(){
+        //default constructor
+        this.description = "description goes here";
+        this.complete = false;
+        this.dueDate = "YYYY-MM-DD";
+    }
+
+    public Item(String description, String dueDate){
+        //constructor
+        this.description = description;
+        this.dueDate = dueDate;
         this.complete = false;
     }
 
-    //constructor for optional date
-    public Item(String title, String description, Boolean complete) {
-        this.title = validateTitle(title);
-        this.description = description;
-        this.complete = complete;
-    }
-
-    public Item(String title, String description, Boolean complete, String dueDateString) {
-
-        this.title = validateTitle(title);
-        this.description = description;
-        this.complete = complete;
-        this.dueDateString = dueDateString;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = validateTitle(title);
-    }
+    //setters and getters
 
     public String getDescription() {
         return description;
@@ -58,33 +46,13 @@ public class Item {
         this.complete = complete;
     }
 
-    public String getDueDateString() {
-        return dueDateString;
+    public String getDueDate() {
+        return dueDate;
     }
 
-    public void setDueDateString(String dueDateString) {
-        this.dueDateString = dueDateString;
+    public void setDueDate(String dueDate) {
+        this.dueDate = dueDate;
     }
 
-    public String validateDescription(String input) {
 
-        int inputLength = input.length();
-        String defaultDescription = "Try a description between 1 and 256 characters";
-
-        if (inputLength < 1 || inputLength > 256) {
-
-            return defaultDescription;
-        } else {
-            return input;
-        }
-    }
-
-    public String validateTitle(String title) {
-
-        if (title.length() >= 3) {
-            return title;
-        } else {
-            return "Title should have at least 3 characters";
-        }
-    }
 }//end Item class

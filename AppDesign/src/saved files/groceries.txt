@@ -1,3 +1,0 @@
-groceries eggs 2021-11-23 false
-groceries milk 2021-11-23 false
-groceries bacon 2021-11-23 false

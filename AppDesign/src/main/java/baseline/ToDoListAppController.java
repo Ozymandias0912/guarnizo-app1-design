@@ -1,3 +1,7 @@
+/*
+ *  UCF COP3330 Fall 2021 Application Assignment 1 Solution
+ *  Copyright 2021 Juan Guarnizo
+ */
 package baseline;
 
 import javafx.collections.FXCollections;
@@ -26,246 +30,100 @@ import java.util.Scanner;
 
 public class ToDoListAppController implements Initializable {
 
+//Pseudocode
+    //create a table column for the description of the item
+    //create a table column for the due date of the item
+    //create a table column for the completed boolean of the item
 
-    @FXML
-    private TableColumn<Item, String> title;
-
-    @FXML
-    private TableColumn<Item, String> description;
-
-    @FXML
-    private TableColumn<Item, Boolean> complete;
-
-    @FXML
-    private TableColumn<Item, String> dueDateString;
-
-    @FXML
-    private TableView<Item> table;
+    //create a textfield to get the description input from the user
+    //create a textfield to get the title of the list input from the user
+    //create a datepicker to get the input for the due date from the user
+    //create a file chooser
 
 
 
-    ObservableList<Item> list = FXCollections.observableArrayList();
+    //create a tableview to get all of these columns
+    //create an observable list called list,
+    // and set it to be the array list of items in the List class
 
-    @FXML
-    private TableColumn<List, String> titleList;
-
-    @FXML
-    private TableView<List> listTable;
-
-    ObservableList<List> lists = FXCollections.observableArrayList();
-
-    //input characteristics
-    @FXML
-    private TextField titleInput;
-
-    @FXML
-    private TextField descriptionInput;
-
-    @FXML
-    private TextField titleListInput;
-
-    @FXML
-    private DatePicker datePicker;
-
-    @FXML
-    private FileChooser fileChooser = new FileChooser();
-
-
-
-    //Initializing...
+    //create a second tableview to show the different lists in the app
+    //create a table column for this list that will display the list's title
+    //create a second observable list for this table view called arrayLists
 
     @Override
-    public void initialize(URL url, ResourceBundle rb){
-
-        title.setCellValueFactory(new PropertyValueFactory<>("title"));
-        description.setCellValueFactory(new PropertyValueFactory<>("description"));
-        complete.setCellFactory(CheckBoxTableCell.forTableColumn(complete));
-        complete.setCellValueFactory(new PropertyValueFactory<>("complete"));
-        complete.setEditable(true);
-        dueDateString.setCellValueFactory(new PropertyValueFactory<>("dueDateString"));
-        table.setEditable(true);
-
-        titleList.setCellValueFactory(new PropertyValueFactory<>("titleList"));
-
-        table.setItems(list);
-
-
-
-        listTable.setItems(lists);
-
-        fileChooser.setInitialDirectory(new File("src\\saved files"));
-
-    }//end initialize
-
-
-
-    //add task button
-    public void addTask(ActionEvent ae) {
-        if(datePicker.getValue() == null){
-            //add task with no due date
-            Item task = new Item(titleInput.getText(), descriptionInput.getText(), false);
-
-            task.setDescription(task.validateDescription(task.getDescription()));
-
-            list.add(task);
-        }
-        else{
-            //add task with due date
-            Item task = new Item( titleInput.getText(), descriptionInput.getText(),
-                    false,  datePicker.getValue().toString());
-
-            //validate date
-            if(datePicker.getValue().isBefore(LocalDate.now())){
-
-                task.setDueDateString(LocalDate.now().toString());
-            }
-            else{
-
-                task.setDueDateString(datePicker.getValue().toString());
-            }
-
-            //validate description
-            task.setDescription(task.validateDescription(task.getDescription()));
-
-            list.add(task);
-        }
-    }//end add task function
-
-    //remove task button
-    public void removeTask(ActionEvent ae){
-
-        list.remove(table.getSelectionModel().getSelectedIndex());
+    public void initialize(URL location, ResourceBundle resources) {
+        //initialize the text fields, table columns the tableview, etc
     }
-
-    //delete all button
-    public void removeAllTasks(ActionEvent ae){
-
-        list.remove(0, list.size());
-    }
-
-    //edit button
-    public void editTask(ActionEvent ae){
-
-        if(datePicker.getValue() == null){
-
-            //get index of task in the list
-            int index = table.getSelectionModel().getSelectedIndex();
-            //remove task
-            list.remove(index);
-            //add task in the same index
-            Item task = new Item(titleInput.getText(), descriptionInput.getText(), false);
-
-            task.setDescription(task.validateDescription(task.getDescription()));
-
-            list.add(index, task);
-        }
-        else{
-
-            //get index of task in the list
-            int index = table.getSelectionModel().getSelectedIndex();
-            //remove task
-            list.remove(index);
-            //add task in the same index
-            //add task with due date
-            Item task = new Item( titleInput.getText(), descriptionInput.getText(),
-                    false,  datePicker.getValue().toString());
-
-            //validate date
-            if(datePicker.getValue().isBefore(LocalDate.now())){
-
-                task.setDueDateString(LocalDate.now().toString());
-            }
-            else{
-
-                task.setDueDateString(datePicker.getValue().toString());
-            }
-
-            //validate description
-            task.setDescription(task.validateDescription(task.getDescription()));
-
-            list.add(index, task);
-        }
-    }
-
-    //add list button
+    //functions to manage the to do lists
     public void addList(ActionEvent ae){
-
-        Item task = new Item();
-
-        ArrayList<Item> todo = new ArrayList<>();
-
-        List todoList = new List( todo, titleListInput.getText());
-
-        lists.add(todoList);
-
-
-    }//talk to a TA!!
-
-
-    //save in file menu: file -> save as
-
-    @FXML
-    public void saveFile(ActionEvent ae){
-
-        File file = fileChooser.showSaveDialog(new Stage());
-
-        if(file != null){
-
-            String content = "";
-
-            for(int i = 0; i < list.size(); i++){
-
-                content = content + list.get(i).getTitle() + " " + list.get(i).getDescription() + " " +
-                        list.get(i).getDueDateString() + " " + list.get(i).getComplete().toString() + "\n";
-            }
-
-
-            save(file, content);
-        }
+        //create a List object
+        //add it to arrayLists
     }
 
-    public void save(File file, String content) {
-
-        try{
-            FileWriter writer = new FileWriter(file);
-            writer.write(content);
-            writer.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void deleteList(ActionEvent ae){
+        //get selected List on arrayLists
+        //remove it from arrayLists
     }
 
-    @FXML
-    public void loadFile(ActionEvent ae){
-
-        File file = fileChooser.showOpenDialog(new Stage());
-
-        try {
-            Scanner input = new Scanner(file);
-
-            String title;
-            String description;
-            String dueDate;
-            Boolean completed;
-
-            while(input.hasNext()){
-
-                title = input.next();
-                dueDate = input.next();
-                description = input.next();
-                completed = input.nextBoolean();
-
-                Item task = new Item(title, dueDate , completed, description);
-
-                list.add(task);
-            }
-
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+    public void editList(ActionEvent ae){
+        //keep track of the index of the List in arrayLists
+        //delete the List
+        //add a List with the new data from the user at the same position in arrayLists
+        //using the index saved on step 1
     }
+
+    public void removeAllLists(ActionEvent ae){
+        //remove all Lists in arrayLists
+    }
+
+    public void save(ActionEvent ae){
+        //initialize file chooser
+        //open save window with the file chooser
+        //save the information from the list into a text file
+    }
+
+    public void load(ActionEvent ae){
+        //initialize file chooser
+        //open load window with the file chooser
+        //copy the information from the text file to list
+    }
+
+    //functions to manage the items inside a given to do list
+    public void addItem(ActionEvent ae) {
+        //create an item object using the user's input
+        //add it to list
+    }
+
+    public void deleteItem(ActionEvent ae){
+        //get selected item in the list
+        //remove it from list
+    }
+
+    public void editItem(ActionEvent ae){
+        //keep track of the index of the item in list
+        //delete the item
+        //add an item with the new data from the user at the same position in list
+        //using the index saved on step 1
+    }
+
+    public void removeAllItems(ActionEvent ae){
+        //remove all items in list
+    }
+
+
+    public void markComplete(ActionEvent ae){
+        //get selected item in the list
+        //call complete setter from the Item class
+        //set the complete field to true
+    }
+
+    public void markIncomplete(ActionEvent ae){
+        //get selected item in the list
+        //call complete setter from the Item class
+        //set the complete field to false
+    }
+
+
 
 
 
