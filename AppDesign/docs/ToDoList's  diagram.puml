@@ -1,17 +1,12 @@
 @startuml
 class Item{
-- title
 - description
 - dueDate
 - complete
 
-+ Item(String title, String description, Boolean complete)
++ Item()
 
-+ Item(String title, String description, Boolean complete, String dueDateString)
-
-+ String getTitle()
-
-+ setTitle(String title)
++ Item(String title, String description)
 
 + String getDescription()
 
@@ -21,11 +16,9 @@ class Item{
 
 + setComplete(Boolean complete)
 
-+ String getDueDateString()
++ String getDueDate()
 
-+ setDueDateString(String dueDateString)
-
-+ String validateDescription(String input)
++ setDueDate(String dueDateString)
 
 }
 
@@ -33,17 +26,17 @@ class Item{
 
 class ToDoListAppController implements initializable{
 
-- TableColumn<Item, String> title;
-
 - TableColumn<Item, String> description;
 
 - TableColumn<Item, Boolean> complete;
 
-- TableColumn<Item, String> dueDateString;
+- TableColumn<Item, String> dueDate;
 
 - TableView<Item> table;
 
-- ObservableList<Item> list = FXCollections.observableArrayList();
+- ObservableList<Item> list;
+
+-ObservableList<String> arrayLists;
 
 - TextField titleInput;
 
@@ -51,32 +44,51 @@ class ToDoListAppController implements initializable{
 
 - DatePicker datePicker;
 
-- FileChooser fileChooser = new FileChooser();
+- FileChooser file_chooser;
 
 + initialize(URL url, ResourceBundle rb)
 
-+ addTask(ActionEvent ae)
++ addList(ActionEvent ae)
 
-+ removeTask(ActionEvent ae)
++ removeList(ActionEvent ae)
 
-+ removeAllTasks(ActionEvent ae)
++ removeAllLists(ActionEvent ae)
 
-+public void editTask(ActionEvent ae)
++ editList(ActionEvent ae)
 
-+ saveFile(ActionEvent ae)
++ addItem(ActionEvent ae)
 
-+ save(File file, String content)
++ removeItem(ActionEvent ae)
 
-+ loadFile(ActionEvent ae)
++ removeAllItems(ActionEvent ae)
 
++ editItem(ActionEvent ae)
+
++ save(ActionEvent ae)
+
++ load(ActionEvent ae)
+
+ }
+
+ class List{
+
+ -ArrayList<Item> toDoList;
+ -String titleList;
+
+ +List();
+ +List(String title);
+
+ +getTitleList();
+ +setTitleList(String title);
+ +verify(String title);
  }
 
 class ToDoListApplication extends Application{
 +launch()
 }
 
- Item ---> ToDoListAppController
- ToDoListAppController ---> ToDoListApplication
+ Item ---> List
+ List ---> ToDoListApplication
 
 
 
